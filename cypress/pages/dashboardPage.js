@@ -3,7 +3,7 @@ class DashboardPage {
         const selector = {
             
             dashboardPanel:'body',
-            dashboardHeader:'.header_label'
+            dashboardHeader:'.header_label',
             
         }
 
@@ -12,8 +12,8 @@ class DashboardPage {
 
     checkDashboardPage() {
             cy.location('pathname').should('equal', '/inventory.html')
-            cy.get(this.selectorList.dashboardPanel).should('be.visible')
-            cy.get(this.selectorList.dashboardHeader).contains('Swag Labs')
+            cy.get(this.selectorList().dashboardPanel).should('be.visible')
+            cy.get(this.selectorList().dashboardHeader).contains('Swag Labs')
     }
 
 

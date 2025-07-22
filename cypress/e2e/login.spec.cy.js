@@ -1,28 +1,35 @@
 import userData from '..//fixtures/user-data.json'
 import LoginPage from '..//pages/loginPage.js'
+import DashboardPage from '..//pages/dashboardPage.js'
+import TransactionPage from '..//pages/transactionPage.js'
 
 const loginPage = new LoginPage
+const dashboardPage = new DashboardPage
+const transactionPage = new TransactionPage
 
 
 describe('Projeto SwagLabs', () => {
    
-  it('Login - Success', () => {
-    cy.visit('https://www.saucedemo.com/')
-    cy.get('#user-name').type('standard_user')
-    cy.get('#password').type('secret_sauce')
-    cy.get('#login-button').click()
-    cy.location('pathname').should('equal', '/inventory.html')
-    cy.get('body').should('be.visible')
-    cy.get('.header_label').contains('Swag Labs')
+  it.only('Login - Success', () => {
+    
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userSuccess.username,userData.userSuccess.password)
+    
+    dashboardPage.checkDashboardPage()
+
+    transactionPage.fillTransactionPage(userData.newUser.firstname,userData.newUser.lastname,userData.newUser.zipcode)
+    
+    //cy.get('[data-test="remove-sauce-labs-backpack"]').click()
+    //cy.get('[data-test="continue-shopping"]').click
+    
     
   })
 
   it('Login - Fail', () => {
-    cy.visit('https://www.saucedemo.com/')
-    cy.get('#user-name').type('wronguser')
-    cy.get('#password').type('123456')
-    cy.get('#login-button').click()
-    cy.get('[data-test="error"]').contains('Epic sadface: Username and password do not match any user in this service')
+
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userFail.username,userData.userFail.password)
+    loginPage.checkAccessInvalid()
   })
 
   
