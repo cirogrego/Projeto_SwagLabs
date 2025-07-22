@@ -24,7 +24,7 @@ class LoginPage {
     }
 
     checkAccessInvalid() {
-        cy.get(this.selectorList().errorMsg).contain('Epic sadface: Username and password do not match any user in this service')
+        cy.get(this.selectorList().errorMsg).contains('Epic sadface: Username and password do not match any user in this service')
     }
 
 

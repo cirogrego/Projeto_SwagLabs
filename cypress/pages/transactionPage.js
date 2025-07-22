@@ -18,6 +18,7 @@ class TransactionPage {
             continueShoppingButton:'[data-test="continue-shopping"]',
             menuButton:'#react-burger-menu-btn',
             logoutButton:'[data-test="logout-sidebar-link"]',
+            
 
         }
 
@@ -28,7 +29,7 @@ class TransactionPage {
     fillTransactionPage(firstname, lastname, zipcode) {
         cy.get(this.selectorList().filterField).select('Price (low to high)')
         cy.get(this.selectorList().shoppingCartLink)
-         cy.get(this.selectorList().cartAddButton).click()   
+        cy.get(this.selectorList().cartAddButton).click()   
         cy.get(this.selectorList().shoppingCartBagde).contains('1').click()
         cy.get(this.selectorList().checkoutButton).click()
         cy.get(this.selectorList().firstNameField).type(firstname)
@@ -40,6 +41,15 @@ class TransactionPage {
         cy.get(this.selectorList().checkoutCompletePanel).contains('Checkout: Complete!')
         cy.get(this.selectorList().backHomeButton).click()
 
+    }
+
+    cancelTransactionPage() {
+        cy.get(this.selectorList().cartAddButton).click()
+        cy.get(this.selectorList().shoppingCartBagde).contains('1').click()
+        cy.get(this.selectorList().removeButton).click()
+        cy.get(this.selectorList().continueShoppingButton).click()
+        cy.get(this.selectorList().menuButton).click()
+        cy.get(this.selectorList().logoutButton).click()
     }
     
 }    
