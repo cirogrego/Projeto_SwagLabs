@@ -7,12 +7,15 @@ This project utilizes Cypress to automate the testing of login feature and an us
 npm install
 ```
 > **NOTE** :
+>
+> it is necessary to have node installed
 
-it is necessary to have node installed
+## Running
+```bash
 
-Running
 # You open the Cypress UI
 npx cypress open
 
 # Run the automation by command line
 npx cypress run
+```
